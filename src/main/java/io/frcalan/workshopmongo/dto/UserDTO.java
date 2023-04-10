@@ -3,6 +3,7 @@ package io.frcalan.workshopmongo.dto;
 import io.frcalan.workshopmongo.domain.User;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 public class UserDTO implements Serializable {
 
@@ -15,10 +16,10 @@ public class UserDTO implements Serializable {
     public UserDTO() {
     }
 
-    public UserDTO(User obj) {
-        this.id = obj.getId();
-        this.name = obj.getName();
-        this.email = obj.getEmail();
+    public UserDTO(Optional<User> obj) {
+        this.id = obj.get().getId();
+        this.name = obj.get().getName();
+        this.email = obj.get().getEmail();
     }
 
     public String getId() {
