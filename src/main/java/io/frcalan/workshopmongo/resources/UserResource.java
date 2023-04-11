@@ -1,5 +1,6 @@
 package io.frcalan.workshopmongo.resources;
 
+import io.frcalan.workshopmongo.domain.Post;
 import io.frcalan.workshopmongo.domain.User;
 import io.frcalan.workshopmongo.dto.UserDTO;
 import io.frcalan.workshopmongo.service.UserService;
@@ -52,5 +53,11 @@ public class UserResource {
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = service.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
